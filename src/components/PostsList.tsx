@@ -1,7 +1,5 @@
-import axios, { AxiosError } from 'axios'
-import React, { useEffect, useState } from 'react'
 import {  PostDTO } from '../@types'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import PostCard from './PostCard'
 
 type Props = {
@@ -12,6 +10,10 @@ export default function PostsList({posts}: Props) {
     
   return (
     <Box component='section'>
+      <Typography variant='h1' sx={{
+                fontSize: '3rem'
+            }}>Posts
+            </Typography>
         {
             posts.map(post => (
                 <PostCard post={post} key={post.id} />

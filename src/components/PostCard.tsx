@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { PostDTO } from '../@types'
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material'
+import LinkContext from '../services/linkContext'
 
 type Props = {
     post: PostDTO, 
 }
 
 export default function PostCard({ post }: Props) {
+  const [link, setLink] = useContext(LinkContext)
   return (
     <Card sx={{ 
         minWidth: 275,
@@ -18,11 +20,13 @@ export default function PostCard({ post }: Props) {
           {post.title}
         </Typography>
         <Typography variant="body2">
-          Author: {post.User.name}
+          Author: {post.User.name} 
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Read More</Button>
+        <Button size="small" onClick={() => {
+          setLink('/posts/' + post.id)
+        }}>Read More</Button>
       </CardActions>
     </Card>
   )
